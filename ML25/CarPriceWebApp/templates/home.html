@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Car Price Predictor</title>
+    <style>
+        body {
+            background-image: url('/static/pexels-lloyd-freeman-599375-1429775.jpg');
+            background-size: cover;
+            background-attachment: fixed; /* Ensures the background is fixed */
+            background-position: center;
+            color: white;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+        h1 {
+            margin-top: 20px;
+            font-size: 2.8em;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
+        }
+        form {
+            background-color: rgba(0, 0, 0, 0.6); /* Semi-transparent background for the form */
+            padding: 20px;
+            border-radius: 15px;
+            display: inline-block;
+            margin: 30px auto;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.7);
+            color: white;
+            max-width: 700px;
+            text-align: left;
+        }
+        .form-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 15px;
+        }
+        .form-row label {
+            width: 48%;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        .form-row input, .form-row select {
+            width: 48%;
+            padding: 10px;
+            border-radius: 5px;
+            border: none;
+            font-size: 1em;
+        }
+        button {
+            width: 100%;
+            padding: 10px;
+            font-size: 1.2em;
+            color: white;
+            background-color: #007BFF;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <h1>Car Price Predictor</h1>
+    <form method="POST" action="{% url 'predict' %}">
+        {% csrf_token %}
+        <div class="form-row">
+            <label for="name">Car Name:</label>
+            <input type="text" id="name" name="name" required>
+        </div>
+        <div class="form-row">
+            <label for="year">Year:</label>
+            <input type="number" id="year" name="year" required>
+        </div>
+        <div class="form-row">
+            <label for="km_driven">Kilometers Driven:</label>
+            <input type="number" id="km_driven" name="km_driven" required>
+        </div>
+        <div class="form-row">
+            <label for="fuel">Fuel Type:</label>
+            <select id="fuel" name="fuel" required>
+                <option value="Petrol">Petrol</option>
+                <option value="Diesel">Diesel</option>
+                <option value="CNG">CNG</option>
+                <option value="Electric">Electric</option>
+                <option value="LPG">LPG</option>
+            </select>
+        </div>
+        <div class="form-row">
+            <label for="seller_type">Seller Type:</label>
+            <select id="seller_type" name="seller_type" required>
+                <option value="Dealer">Dealer</option>
+                <option value="Individual">Individual</option>
+                <option value="Trustmark Dealer">Trustmark Dealer</option>
+            </select>
+        </div>
+        <div class="form-row">
+            <label for="transmission">Transmission Type:</label>
+            <select id="transmission" name="transmission" required>
+                <option value="Manual">Manual</option>
+                <option value="Automatic">Automatic</option>
+            </select>
+        </div>
+        <div class="form-row">
+            <label for="owner">Owner Type:</label>
+            <select id="owner" name="owner" required>
+                <option value="First Owner">First Owner</option>
+                <option value="Second Owner">Second Owner</option>
+                <option value="Third Owner">Third Owner</option>
+                <option value="Fourth & Above Owner">Fourth & Above Owner</option>
+                <option value="Test Drive Car">Test Drive Car</option>
+            </select>
+        </div>
+        <div class="form-row">
+            <label for="mileage">Mileage (km/l or km/kg):</label>
+            <input type="text" id="mileage" name="mileage" required placeholder="e.g., 12.75">
+        </div>
+        <div class="form-row">
+            <label for="engine">Engine (cc):</label>
+            <input type="number" id="engine" name="engine" required>
+        </div>
+        <div class="form-row">
+            <label for="max_power">Max Power (bhp):</label>
+            <input type="number" id="max_power" name="max_power" required>
+        </div>
+        <div class="form-row">
+            <label for="seats">Seats:</label>
+            <input type="number" id="seats" name="seats" required>
+        </div>
+        <button type="submit">Predict Price</button>
+    </form>
+</body>
+</html>
